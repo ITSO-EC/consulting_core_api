@@ -26,10 +26,10 @@ Para ver la lista de API disponibles y sus especificaciones, ejecute el servidor
 Lista de rutas disponibles:
 
 **Rutas de publicaciones**:\
-`POST /v1/posts` - create a post
-`GET /v1/posts` - get all posts
-`GET /v1/posts/:postId` - get post
-`PATCH /v1/posts/:postId` - update post
+`POST /v1/posts` - create a post\
+`GET /v1/posts` - get all posts\
+`GET /v1/posts/:postId` - get post\
+`PATCH /v1/posts/:postId` - update post\
 `DELETE /v1/posts/:postId` - delete post
 
 ## Manejo de errores
