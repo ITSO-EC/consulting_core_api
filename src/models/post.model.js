@@ -6,7 +6,7 @@ const { roles } = require('../config/roles');
 
 const postSchema = mongoose.Schema(
   {
-    name: { type: String, required: true, trim: true },
+    // name: { type: String, required: true, trim: true },
     ro: { type: String, required: true, trim: true },
     type_reform: { type: String, required: true, trim: true },
     file_url: { type: String, required: true, trim: true },

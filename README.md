@@ -17,10 +17,6 @@ src\
  |--index.js        # App entry point
 ```
 
-## API Documentación
-
-Para ver la lista de API disponibles y sus especificaciones, ejecute el servidor y vaya a `http://localhost:3000/v1/docs` en su navegador. Esta página de documentación se genera automáticamente usando las definiciones [swagger](https://swagger.io/) escritas como comentarios en los archivos de ruta.
-
 ### API Endpoints
 
 Lista de rutas disponibles:

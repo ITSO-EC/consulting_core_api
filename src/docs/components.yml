@@ -1,5 +1,27 @@
 components:
   schemas:
+    Post:
+        type: object
+        properties:
+          ro:
+            type: string
+          type_reform:
+            type: string
+          file_url:
+            type: string
+          image_url:
+            type: string
+          legal_regulation:
+            type: string
+          content:
+            type: string
+          number:
+            type: string
+          type:
+            type: string
+          status:
+            type: string
+
     User:
       type: object
       properties:
