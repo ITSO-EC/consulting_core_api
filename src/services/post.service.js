@@ -3,7 +3,7 @@ const { Post } = require('../models');
 const ApiError = require('../utils/ApiError');
 
 /**
- * Create a user
+ * Create a post
  * @param {Object} postBody
  * @returns {Promise<Post>}
  */
@@ -29,61 +29,62 @@ const queryPosts = async (filter, options) => {
 };
 
 // /**
-//  * Get user by id
+//  * Get post by id
 //  * @param {ObjectId} id
 //  * @returns {Promise<Post>}
 //  */
-// const getUserById = async (id) => {
-//   return Post.findById(id);
-// };
+
+const getPostById = async (id) => {
+  return Post.findById(id);
+};
 
 // /**
-//  * Get user by email
+//  * Get post by email
 //  * @param {string} email
 //  * @returns {Promise<Post>}
 //  */
-// const getUserByEmail = async (email) => {
+// const getPostByEmail = async (email) => {
 //   return Post.findOne({ email });
 // };
 
-// /**
-//  * Update user by id
-//  * @param {ObjectId} userId
-//  * @param {Object} updateBody
-//  * @returns {Promise<Post>}
-//  */
-// const updateUserById = async (userId, updateBody) => {
-//   const user = await getUserById(userId);
-//   if (!user) {
-//     throw new ApiError(httpStatus.NOT_FOUND, 'Post not found');
-//   }
-//   if (updateBody.email && (await Post.isEmailTaken(updateBody.email, userId))) {
-//     throw new ApiError(httpStatus.BAD_REQUEST, 'Email already taken');
-//   }
-//   Object.assign(user, updateBody);
-//   await user.save();
-//   return user;
-// };
+/**
+ * Update post by id
+ * @param {ObjectId} postId
+ * @param {Object} updateBody
+ * @returns {Promise<Post>}
+ */
+const updatePostById = async (postId, updateBody) => {
+  const post = await getPostById(postId);
+  if (!post) {
+    throw new ApiError(httpStatus.NOT_FOUND, 'Post not found');
+  }
+  // if (updateBody.email && (await Post.isEmailTaken(updateBody.email, postId))) {
+  //   throw new ApiError(httpStatus.BAD_REQUEST, 'Email already taken');
+  // }
+  Object.assign(post, updateBody);
+  await post.save();
+  return post;
+};
 
-// /**
-//  * Delete user by id
-//  * @param {ObjectId} userId
-//  * @returns {Promise<Post>}
-//  */
-// const deleteUserById = async (userId) => {
-//   const user = await getUserById(userId);
-//   if (!user) {
-//     throw new ApiError(httpStatus.NOT_FOUND, 'Post not found');
-//   }
-//   await user.remove();
-//   return user;
-// };
+/**
+ * Delete post by id
+ * @param {ObjectId} postId
+ * @returns {Promise<Post>}
+ */
+const deletePostById = async (postId) => {
+  const post = await getPostById(postId);
+  if (!post) {
+    throw new ApiError(httpStatus.NOT_FOUND, 'Post not found');
+  }
+  await post.remove();
+  return post;
+};
 
 module.exports = {
   createPost,
   queryPosts,
-  // getUserById,
-  // getUserByEmail,
-  // updateUserById,
-  // deleteUserById,
+  getPostById,
+  updatePostById,
+  // getPostByEmail,
+  deletePostById,
 };

@@ -5,8 +5,8 @@ const catchAsync = require('../utils/catchAsync');
 const { postService } = require('../services');
 
 const createPost = catchAsync(async (req, res) => {
-  const user = await postService.createPost(req.body);
-  res.status(httpStatus.CREATED).send(user);
+  const post = await postService.createPost(req.body);
+  res.status(httpStatus.CREATED).send(post);
 });
 
 const getPosts = catchAsync(async (req, res) => {
@@ -16,28 +16,28 @@ const getPosts = catchAsync(async (req, res) => {
   res.send(result);
 });
 
-// const getUser = catchAsync(async (req, res) => {
-//   const user = await postService.getUserById(req.params.userId);
-//   if (!user) {
-//     throw new ApiError(httpStatus.NOT_FOUND, 'User not found');
-//   }
-//   res.send(user);
-// });
+const getPost = catchAsync(async (req, res) => {
+  const post = await postService.getPostById(req.params.postId);
+  if (!post) {
+    throw new ApiError(httpStatus.NOT_FOUND, 'Post not found');
+  }
+  res.send(post);
+});
 
-// const updateUser = catchAsync(async (req, res) => {
-//   const user = await postService.updateUserById(req.params.userId, req.body);
-//   res.send(user);
-// });
+const updatePost = catchAsync(async (req, res) => {
+  const post = await postService.updatePostById(req.params.postId, req.body);
+  res.send(post);
+});
 
-// const deleteUser = catchAsync(async (req, res) => {
-//   await postService.deleteUserById(req.params.userId);
-//   res.status(httpStatus.NO_CONTENT).send();
-// });
+const deletePost = catchAsync(async (req, res) => {
+  await postService.deletePostById(req.params.postId);
+  res.status(httpStatus.NO_CONTENT).send();
+});
 
 module.exports = {
   createPost,
   getPosts,
-  // getUser,
-  // updateUser,
-  // deleteUser,
+  getPost,
+  updatePost,
+  deletePost,
 };
