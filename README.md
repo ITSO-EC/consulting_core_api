@@ -21,12 +21,25 @@ src\
 
 Lista de rutas disponibles:
 
+**Rutas de usuarios**:\
+`POST /v1/users` - create a user\
+`GET /v1/users` - get all users\
+`GET /v1/users/:userId` - get user\
+`PATCH /v1/users/:userId` - update user\
+`DELETE /v1/users/:userId` - delete user
+
 **Rutas de publicaciones**:\
 `POST /v1/posts` - create a post\
 `GET /v1/posts` - get all posts\
 `GET /v1/posts/:postId` - get post\
 `PATCH /v1/posts/:postId` - update post\
 `DELETE /v1/posts/:postId` - delete post
+
+Para los metodos de "GET ALL", es posible usar los siguientes metodos para temas de paginación:
+- `limit` - limit data\
+Ej:
+Url: `v1/users?limit=100`
+Response: usuarios (con un maximo de 100 datos)
 
 ## Manejo de errores
 
