@@ -12,7 +12,7 @@ mongoose.connect(config.mongoose.url, config.mongoose.options).then(() => {
   console.log("mode", process.env.NODE_ENV)
   console.log("config.domain", config.domain)
 
-  if (config.env != 'production') {
+  if (config.env === 'production') {
     const cert = fs.readFileSync('./path/to/the/cert.crt');
     const ca = fs.readFileSync('./path/to/the/ca.crt');
     const key = fs.readFileSync('./path/to/the/private.key');
