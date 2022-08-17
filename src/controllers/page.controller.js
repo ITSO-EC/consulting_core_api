@@ -2,7 +2,7 @@ const httpStatus = require('http-status');
 const pick = require('../utils/pick');
 const ApiError = require('../utils/ApiError');
 const catchAsync = require('../utils/catchAsync');
-const { pageService } = require('../services');
+const { pageService, categoryService } = require('../services');
 
 const createPage = catchAsync(async (req, res) => {
   const page = await pageService.createPage(req.body);
@@ -15,6 +15,13 @@ const getPages = catchAsync(async (req, res) => {
   const result = await pageService.queryPages(filter, options);
   res.send(result);
 });
+
+// const getCategories = catchAsync(async (req, res) => {
+//   const filter = pick(req.query, ['name', 'role']);
+//   const options = pick(req.query, ['sortBy', 'limit', 'page']);
+//   const result = await pageService.queryPages(filter, options);
+//   res.send(result);
+// });
 
 const getPage = catchAsync(async (req, res) => {
   const page = await pageService.getPageById(req.params.pageId);
