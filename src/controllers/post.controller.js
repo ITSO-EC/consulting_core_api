@@ -10,10 +10,10 @@ const createPost = catchAsync(async (req, res) => {
 });
 
 const getPosts = catchAsync(async (req, res) => {
-  const filter = pick(req.query, ['byPage', 'name']);
-  if (filter.byPage != undefined) {
-    filter.page = filter.byPage;
-    delete filter.byPage
+  const filter = pick(req.query, ['byCategory', 'name']);
+  if (filter.byCategory != undefined) {
+    filter.category = filter.byCategory;
+    delete filter.byCategory
   }
   const options = pick(req.query, ['sortBy', 'limit', 'page']);
   const result = await postService.queryPosts(filter, options);
