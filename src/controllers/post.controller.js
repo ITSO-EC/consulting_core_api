@@ -3,8 +3,13 @@ const pick = require('../utils/pick');
 const ApiError = require('../utils/ApiError');
 const catchAsync = require('../utils/catchAsync');
 const { postService } = require('../services');
+const path = require('path');
 
 const createPost = catchAsync(async (req, res) => {
+  req.body.file_url = req.file.path;
+  // res.send({
+  //   req: req.file.path
+  // });
   const post = await postService.createPost(req.body);
   res.status(httpStatus.CREATED).send(post);
 });
@@ -29,6 +34,7 @@ const getPost = catchAsync(async (req, res) => {
 });
 
 const updatePost = catchAsync(async (req, res) => {
+  console.log(req.body);
   const post = await postService.updatePostById(req.params.postId, req.body);
   res.send(post);
 });
@@ -38,10 +44,20 @@ const deletePost = catchAsync(async (req, res) => {
   res.status(httpStatus.NO_CONTENT).send();
 });
 
+
+
+
+const getFile = catchAsync(async (req, res) => {
+  const { fileId } = req.params;
+  res.sendFile(path.join(__dirname, '../../uploads/' + fileId));
+});
+
+
 module.exports = {
   createPost,
   getPosts,
   getPost,
   updatePost,
   deletePost,
+  getFile
 };

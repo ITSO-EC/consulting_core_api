@@ -12,26 +12,10 @@ mongoose.connect(config.mongoose.url, config.mongoose.options).then(() => {
   console.log("mode", process.env.NODE_ENV)
   console.log("config.domain", config.domain)
 
-  // if (config.env === 'production') {
-  //   const cert = fs.readFileSync('./path/to/the/cert.crt');
-  //   const ca = fs.readFileSync('./path/to/the/ca.crt');
-  //   const key = fs.readFileSync('./path/to/the/private.key');
-
-  //   let options = {
-  //     cert: cert, // fs.readFileSync('./ssl/example.crt');
-  //     ca: ca, // fs.readFileSync('./ssl/example.ca-bundle');
-  //     key: key // fs.readFileSync('./ssl/example.key');
-  //   };
-  //   const httpsServer = https.createServer(options, app);
-  //   httpsServer.listen(config.port, config.domain);
-  // } else {
   server = app.listen(config.port, () => {
     logger.info(`Server started on port ${config.port}`);
   }).on('error', unexpectedErrorHandler);
-  // }
-  // server = app.listen(config.port, () => {
-  //   logger.info(`Listening to port ${config.port}`);
-  // });
+ 
 });
 
 const exitHandler = () => {

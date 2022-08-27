@@ -6,10 +6,16 @@ const postController = require('../../controllers/post.controller');
 
 const router = express.Router();
 
+const upload = require('../../middlewares/upload');
+
 router
   .route('/')
-  .post(/*auth('managePosts'), validate(postValidation.createPost), */ postController.createPost)
+  .post(upload.single('file_url'),  /*auth('managePosts'), validate(postValidation.createPost), */ postController.createPost)
   .get(/*auth('getPosts'), validate(postValidation.getPosts), */postController.getPosts);
+
+router
+  .route('/file/:fileId')
+  .get(/*auth('getPosts'), validate(postValidation.getPosts), */postController.getFile);
 
 router
   .route('/:postId')
