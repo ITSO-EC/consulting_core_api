@@ -22,6 +22,7 @@ router
 
     });
 
+    // "start": "pm2 start ecosystem.config.json --no-daemon",
 
 router
     .route('/actions/sendto/:to')
