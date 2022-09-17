@@ -6,6 +6,7 @@ const categoryRoute = require('./category.route');
 const pageRoute = require('./page.route');
 const docsRoute = require('./docs.route');
 const config = require('../../config/config');
+const wsRoute = require('./ws.route');
 
 const router = express.Router();
 
@@ -29,6 +30,10 @@ const defaultRoutes = [
   {
     path: '/pages',
     route: pageRoute,
+  },
+  {
+    path: '/ws',
+    route: wsRoute,
   },
 ];
 
