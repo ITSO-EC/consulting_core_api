@@ -14,6 +14,7 @@ const fileFilter = (req, file, cb) => {
         cb(null, true)
     } else {
         cb(null, false)
+        // return cb(new Error('Invalid upload: fieldname should be test_doc and .csv format '));
     }
 }
 

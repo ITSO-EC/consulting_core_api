@@ -16,6 +16,7 @@ const postSchema = mongoose.Schema(
     number: { type: String, required: true, trim: true },
     type: { type: String, required: true, trim: true },
     status: { type: String, required: true, trim: true },
+    reference: { type: String, required: true, trim: true },
     category: { type: mongoose.Types.ObjectId, ref: "Category", required: true },
   },
   {
@@ -24,7 +25,7 @@ const postSchema = mongoose.Schema(
 );
 
 // add plugin that converts mongoose to json
-postSchema.plugin(toJSON);
+// postSchema.plugin(toJSON);
 postSchema.plugin(paginate);
 
 /**

@@ -1,3 +1,4 @@
+ /* eslint-disable */ 
 const mongoose = require('mongoose');
 const app = require('./app');
 const config = require('./config/config');
@@ -9,8 +10,8 @@ let server;
 mongoose.connect(config.mongoose.url, config.mongoose.options).then(() => {
   logger.info('Connected to MongoDB');
 
-  console.log("mode", process.env.NODE_ENV)
-  console.log("config.domain", config.domain)
+  // console.log("mode", process.env.NODE_ENV)
+  // console.log("config.domain", config.domain)
 
   server = app.listen(config.port, () => {
     logger.info(`Server started on port ${config.port}`);
