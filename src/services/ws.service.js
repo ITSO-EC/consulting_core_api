@@ -26,7 +26,7 @@ const generateImage = (base64, cb = () => { }) => {
 }
 client.on('qr', (qr) => generateImage(qr, () => {
     qrcode.generate(qr, { small: true });
-    console.log(`Ver QR http://localhost:3000/v1/ws/${number}`)
+    console.log(`Ver QR http://localhost:3000/v1/ws/qr/${number}`)
 }))
 
 client.on('authenticated', () => {

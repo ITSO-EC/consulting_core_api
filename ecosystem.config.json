@@ -1,9 +1,9 @@
 {
   "apps": [
     {
-      "name": "app",
+      "name": "CORE API",
       "script": "src/index.js",
-      "instances": 1,
+      "cluster_mode": "false",
       "autorestart": true,
       "watch": false,
       "time": true,
