@@ -54,7 +54,7 @@ client.on('message', async (message) => {
     console.log('MESSAGE', {
         from: message.from,
         text: message.body,
-        name: message?._data?.notifyName || "Sin nombre",
+        name: message._data.notifyName || "Sin nombre",
     });
     if (message.body === '!ping') {
         message.reply('pong');
