@@ -5,6 +5,13 @@ const catchAsync = require('../utils/catchAsync');
 const { categoryService } = require('../services');
 
 const createCategory = catchAsync(async (req, res) => {
+  console.log(req.file)
+  try {
+    req.body.image_url = req.file.path;
+  }
+  catch (err) {
+    console.log(err);
+  }
   const category = await categoryService.createCategory(req.body);
   res.status(httpStatus.CREATED).send(category);
 });
@@ -29,6 +36,13 @@ const getCategory = catchAsync(async (req, res) => {
 });
 
 const updateCategory = catchAsync(async (req, res) => {
+  console.log(req.file)
+  try {
+    req.body.image_url = req.file.path;
+  }
+  catch (err) {
+    console.log(err);
+  }
   const category = await categoryService.updateCategoryById(req.params.categoryId, req.body);
   res.send(category);
 });

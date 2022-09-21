@@ -5,8 +5,8 @@ const { toJSON, paginate } = require('./plugins');
 const postSchema = mongoose.Schema(
   {
     name: { type: String, required: true, trim: true },
-    image_url: { type: String, required: true, trim: true },
-    status: { type: String, required: true, trim: true },
+    image_url: { type: String, required: false, trim: true },
+    isVisible: { type: Boolean, required: true, trim: true },
     // categories: [
     //   { type: mongoose.Schema.Types.ObjectId, ref: 'Category' }
     // ]

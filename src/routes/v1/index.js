@@ -7,14 +7,19 @@ const pageRoute = require('./page.route');
 const docsRoute = require('./docs.route');
 const config = require('../../config/config');
 const wsRoute = require('./ws.route');
+const defaultRoute = require('./default.route');
 
 const router = express.Router();
 
 const defaultRoutes = [
   {
-    path: '/auth',
-    route: authRoute,
+    path: '/',
+    route: defaultRoute,
   },
+  // {
+  //   path: '/auth',
+  //   route: authRoute,
+  // },
   {
     path: '/users',
     route: userRoute,
@@ -49,11 +54,13 @@ defaultRoutes.forEach((route) => {
   router.use(route.path, route.route);
 });
 
+router.use('/', express.static('public'));
+
 /* istanbul ignore next */
-if (config.env === 'development') {
-  devRoutes.forEach((route) => {
-    router.use(route.path, route.route);
-  });
-}
+// if (config.env === 'development') {
+devRoutes.forEach((route) => {
+  router.use(route.path, route.route);
+});
+// }
 
 module.exports = router;

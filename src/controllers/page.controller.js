@@ -5,6 +5,13 @@ const catchAsync = require('../utils/catchAsync');
 const { pageService, categoryService } = require('../services');
 
 const createPage = catchAsync(async (req, res) => {
+  console.log(req.file)
+  try {
+    req.body.image_url = req.file.path;
+  }
+  catch (err) {
+    console.log(err);
+  }
   const page = await pageService.createPage(req.body);
   res.status(httpStatus.CREATED).send(page);
 });
@@ -32,6 +39,13 @@ const getPage = catchAsync(async (req, res) => {
 });
 
 const updatePage = catchAsync(async (req, res) => {
+  console.log(req.file)
+  try {
+    req.body.image_url = req.file.path;
+  }
+  catch (err) {
+    console.log(err);
+  }
   const page = await pageService.updatePageById(req.params.pageId, req.body);
   res.send(page);
 });

@@ -6,8 +6,13 @@ const { postService } = require('../services');
 
 const createPost = catchAsync(async (req, res) => {
   try {
-    req.body.file_url = req.files?.file_url[0]?.path ?? null;
-    req.body.image_url = req.files?.image_url[0]?.path ?? null;
+    req.body.file_url = req.files.file_url[0].path;
+  }
+  catch (err) {
+    console.log(err);
+  }
+  try {
+    req.body.image_url = req.files.image_url[0].path;
   }
   catch (err) {
     console.log(err);
@@ -37,8 +42,13 @@ const getPost = catchAsync(async (req, res) => {
 
 const updatePost = catchAsync(async (req, res) => {
   try {
-    req.body.file_url = req.files?.file_url[0]?.path ?? null;
-    req.body.image_url = req.files?.image_url[0]?.path ?? null;
+    req.body.file_url = req.files.file_url[0].path;
+  }
+  catch (err) {
+    console.log(err);
+  }
+  try {
+    req.body.image_url = req.files.image_url[0].path;
   }
   catch (err) {
     console.log(err);
