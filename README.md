@@ -21,13 +21,6 @@ src\
 
 Lista de rutas disponibles:
 
-**Rutas de usuarios**:\
-`POST /v1/users` - create a user\
-`GET /v1/users` - get all users\
-`GET /v1/users/:userId` - get user\
-`PATCH /v1/users/:userId` - update user\
-`DELETE /v1/users/:userId` - delete user
-
 **Rutas de paginas**:\
 `POST /v1/pages` - create a page\
 `GET /v1/pages` - get all pages\
@@ -46,6 +39,7 @@ Lista de rutas disponibles:
 `POST /v1/posts` - create a post\
 `GET /v1/posts` - get all posts\
 `GET /v1/posts/:postId` - get post\
+`GET /v1/posts/file/:filepath` - get file-post\
 `PATCH /v1/posts/:postId` - update post\
 `DELETE /v1/posts/:postId` - delete post
 

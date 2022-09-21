@@ -14,7 +14,7 @@ const postSchema = mongoose.Schema(
 );
 
 // add plugin that converts mongoose to json
-postSchema.plugin(toJSON);
+// postSchema.plugin(toJSON);
 postSchema.plugin(paginate);
 
 

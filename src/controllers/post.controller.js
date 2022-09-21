@@ -7,11 +7,14 @@ const { postService } = require('../services');
 const createPost = catchAsync(async (req, res) => {
   try {
     req.body.file_url = req.files.file_url[0].path;
+<<<<<<< HEAD
   }
   catch (err) {
     console.log(err);
   }
   try {
+=======
+>>>>>>> 6120144528192106ae535b78f155ceab8bebfc6f
     req.body.image_url = req.files.image_url[0].path;
   }
   catch (err) {

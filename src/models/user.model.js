@@ -49,6 +49,7 @@ const userSchema = mongoose.Schema(
       type: Boolean,
       default: false,
     },
+    image_url: { type: String, required: true, trim: true },
   },
   {
     timestamps: true,
@@ -56,7 +57,7 @@ const userSchema = mongoose.Schema(
 );
 
 // add plugin that converts mongoose to json
-userSchema.plugin(toJSON);
+// userSchema.plugin(toJSON);
 userSchema.plugin(paginate);
 
 /**
