@@ -3,3 +3,4 @@ module.exports.User = require('./user.model');
 module.exports.Post = require('./post.model');
 module.exports.Category = require('./category.model');
 module.exports.Page = require('./page.model');
+module.exports.Order = require('./order.model');

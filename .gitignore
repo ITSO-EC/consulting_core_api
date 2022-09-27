@@ -13,4 +13,5 @@ coverage
 
 .wwebjs_auth
 
+uploads/*
 uploads
