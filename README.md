@@ -40,10 +40,20 @@ Lista de rutas disponibles:
 `GET /v1/posts` - get all posts\
 `GET /v1/posts/:postId` - get post\
 `PATCH /v1/posts/:postId` - update post\
-`DELETE /v1/posts/:postId` - delete post
+`DELETE /v1/posts/:postId` - delete post\
+`GET /v1/posts/search/:dataToSearch` - get query post data
+
+**Rutas de ordenes**:\
+`POST /v1/orders` - create a order\
+`GET /v1/orders` - get all orders\
+`GET /v1/orders/:orderId` - get order\
+`PATCH /v1/orders/:orderId` - update order\
+`DELETE /v1/orders/:orderId` - delete order
+
 
 **Rutas generales**:\
 `GET /v1/uploads/:filepath` - get file-model\
+
 
 Para los metodos de "GET ALL", es posible usar los siguientes metodos para temas de paginación:
 - `limit` - limit data\
