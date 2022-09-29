@@ -8,7 +8,7 @@ const orderSchema = mongoose.Schema(
   {
     title: { type: String, required: true, trim: true },
     description: { type: String, required: true, trim: true },
-    image_url: { type: String, required: false, trim: true },
+    file_url: { type: String, required: false, trim: true },
     user: { type: mongoose.Types.ObjectId, ref: "User", required: true },
   },
   {

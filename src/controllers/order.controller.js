@@ -5,6 +5,13 @@ const catchAsync = require('../utils/catchAsync');
 const { orderService } = require('../services');
 
 const createOrder = catchAsync(async (req, res) => {
+  console.log(req.file)
+  try {
+    req.body.file_url = req.file.filename;
+  }
+  catch (err) {
+    console.log(err);
+  }
   const order = await orderService.createOrder(req.body);
   res.status(httpStatus.CREATED).send(order);
 });
@@ -25,6 +32,12 @@ const getOrder = catchAsync(async (req, res) => {
 });
 
 const updateOrder = catchAsync(async (req, res) => {
+  try {
+    req.body.file_url = req.file.filename;
+  }
+  catch (err) {
+    console.log(err);
+  }
   const order = await orderService.updateOrderById(req.params.orderId, req.body);
   res.send(order);
 });

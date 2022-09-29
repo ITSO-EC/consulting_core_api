@@ -7,7 +7,7 @@ const { pageService, categoryService } = require('../services');
 const createPage = catchAsync(async (req, res) => {
   console.log(req.file)
   try {
-    req.body.image_url = req.file.path;
+    req.body.image_url = req.file.filename;
   }
   catch (err) {
     console.log(err);
@@ -41,7 +41,7 @@ const getPage = catchAsync(async (req, res) => {
 const updatePage = catchAsync(async (req, res) => {
   console.log(req.file)
   try {
-    req.body.image_url = req.file.path;
+    req.body.image_url = req.file.filename;
   }
   catch (err) {
     console.log(err);

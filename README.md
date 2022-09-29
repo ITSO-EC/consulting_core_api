@@ -39,9 +39,11 @@ Lista de rutas disponibles:
 `POST /v1/posts` - create a post\
 `GET /v1/posts` - get all posts\
 `GET /v1/posts/:postId` - get post\
-`GET /v1/posts/file/:filepath` - get file-post\
 `PATCH /v1/posts/:postId` - update post\
 `DELETE /v1/posts/:postId` - delete post
+
+**Rutas generales**:\
+`GET /v1/uploads/:filepath` - get file-model\
 
 Para los metodos de "GET ALL", es posible usar los siguientes metodos para temas de paginación:
 - `limit` - limit data\

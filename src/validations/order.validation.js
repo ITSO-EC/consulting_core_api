@@ -6,8 +6,8 @@ const createOrder = {
   body: Joi.object().keys({
     title: Joi.string().required(),
     description: Joi.string().required(),
-    image_url: Joi.string().required(),
-    user: Joi.string().custom(objectId),
+    file_url: Joi.string(),
+    user: Joi.string().custom(objectId).required(),
   }),
 };
 
@@ -35,7 +35,7 @@ const updateOrder = {
     .keys({
       title: Joi.string().required(),
       description: Joi.string().required(),
-      image_url: Joi.string(),
+      file_url: Joi.string(),
       user: Joi.string().custom(objectId),
     })
     .min(1),

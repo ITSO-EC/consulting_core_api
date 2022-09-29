@@ -21,8 +21,8 @@ router
   .get(/*auth('getPosts'), validate(postValidation.getPosts), */postController.getPosts);
 
 router
-  .route('/file/:fileId')
-  .get(/*auth('getPosts'), validate(postValidation.getPosts), */postController.getFile);
+  .route('/search/:data')
+  .get(/*auth('getPosts'), validate(postValidation.getPosts), */postController.searchPosts);
 
 router
   .route('/:postId')

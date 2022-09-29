@@ -5,14 +5,15 @@ const catchAsync = require('../utils/catchAsync');
 const { postService } = require('../services');
 
 const createPost = catchAsync(async (req, res) => {
+  console.log(req.files)
   try {
-    req.body.file_url = req.files.file_url[0].path;
+    req.body.file_url = req.files.file_url[0].filename;
   }
   catch (err) {
     console.log(err);
   }
   try {
-    req.body.image_url = req.files.image_url[0].path;
+    req.body.image_url = req.files.image_url[0].filename;
   }
   catch (err) {
     console.log(err);
@@ -32,6 +33,14 @@ const getPosts = catchAsync(async (req, res) => {
   res.send(result);
 });
 
+const searchPosts = catchAsync(async (req, res) => {
+  const filter = pick(req.query, ['byCategory', 'name']);
+  const options = pick(req.query, ['sortBy', 'limit', 'page']);
+  const keyWord = req.params.data;
+  const result = await postService.queryPosts({ title: { $regex: keyWord, $options: 'i' } }, options);
+  res.send(result);
+});
+
 const getPost = catchAsync(async (req, res) => {
   const post = await postService.getPostById(req.params.postId);
   if (!post) {
@@ -42,13 +51,13 @@ const getPost = catchAsync(async (req, res) => {
 
 const updatePost = catchAsync(async (req, res) => {
   try {
-    req.body.file_url = req.files.file_url[0].path;
+    req.body.file_url = req.files.file_url[0].filename;
   }
   catch (err) {
     console.log(err);
   }
   try {
-    req.body.image_url = req.files.image_url[0].path;
+    req.body.image_url = req.files.image_url[0].filename;
   }
   catch (err) {
     console.log(err);
@@ -72,6 +81,7 @@ const getFile = catchAsync(async (req, res) => {
 
 
 module.exports = {
+  searchPosts,
   createPost,
   getPosts,
   getPost,
