@@ -41,7 +41,7 @@ Lista de rutas disponibles:
 `GET /v1/posts/:postId` - get post\
 `PATCH /v1/posts/:postId` - update post\
 `DELETE /v1/posts/:postId` - delete post\
-`GET /v1/posts/search/:dataToSearch` - get query post data
+`GET /v1/posts/search/:dataToSearch` - get query post data by title-post
 
 **Rutas de ordenes**:\
 `POST /v1/orders` - create a order\
