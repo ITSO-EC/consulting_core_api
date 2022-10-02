@@ -7,6 +7,9 @@ const createOrder = {
     title: Joi.string().required(),
     description: Joi.string().required(),
     file_url: Joi.string(),
+    type: Joi.string().required().valid('subscribed', 'refunded'),
+    canceledAt: Joi.date(),
+    price: Joi.number().default(20),
     user: Joi.string().custom(objectId).required(),
   }),
 };
@@ -14,7 +17,7 @@ const createOrder = {
 const getOrders = {
   query: Joi.object().keys({
     name: Joi.string(),
-    role: Joi.string(),
+    user: Joi.string(),
     sortBy: Joi.string(),
     limit: Joi.number().integer(),
     page: Joi.number().integer(),
@@ -36,6 +39,9 @@ const updateOrder = {
       title: Joi.string().required(),
       description: Joi.string().required(),
       file_url: Joi.string(),
+      price: Joi.number(),
+      type: Joi.string().required().valid('subscribed', 'refunded'),
+      canceledAt: Joi.date(),
       user: Joi.string().custom(objectId),
     })
     .min(1),

@@ -9,6 +9,9 @@ const orderSchema = mongoose.Schema(
     title: { type: String, required: true, trim: true },
     description: { type: String, required: true, trim: true },
     file_url: { type: String, required: false, trim: true },
+    type: { type: String, required: true, trim: true },
+    canceledAt: { type: Date, required: false, trim: true },
+    price: { type: Number, default: 20, trim: true },
     user: { type: mongoose.Types.ObjectId, ref: "User", required: true },
   },
   {
@@ -17,7 +20,7 @@ const orderSchema = mongoose.Schema(
 );
 
 // add plugin that converts mongoose to json
-// orderSchema.plugin(toJSON);
+orderSchema.plugin(toJSON);
 orderSchema.plugin(paginate);
 
 /**

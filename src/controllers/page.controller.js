@@ -51,7 +51,18 @@ const updatePage = catchAsync(async (req, res) => {
 });
 
 const deletePage = catchAsync(async (req, res) => {
-  await pageService.deletePageById(req.params.pageId);
+
+  const categoriesByPage = await categoryService.queryCategories({ page: req.params.pageId }, []);
+  if (categoriesByPage.results.length > 0) {
+    throw new ApiError(httpStatus.BAD_REQUEST, 'Page has categories');
+  } else {
+    await pageService.deletePageById(req.params.pageId);
+    res.status(httpStatus.NO_CONTENT).send();
+  }
+
+
+
+
   res.status(httpStatus.NO_CONTENT).send();
 });
 

@@ -85,6 +85,13 @@ const deletePostById = async (postId) => {
   return post;
 };
 
+const deletePosts = async (options) => {
+  const posts = await Post.find(options).remove().exec();
+  return posts;
+};
+
+
+
 module.exports = {
   createPost,
   queryPosts,
@@ -92,4 +99,5 @@ module.exports = {
   updatePostById,
   // getPostByEmail,
   deletePostById,
+  deletePosts
 };

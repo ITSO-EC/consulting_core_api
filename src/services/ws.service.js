@@ -10,6 +10,9 @@ console.log(`Iniciando servicio de whataspp para ${number}`);
 
 const client = new Client({
     authStrategy: new LocalAuth(),
+    puppeteer: {
+        headless: true,
+    },
 });
 
 client.initialize();
@@ -29,8 +32,9 @@ client.on('qr', (qr) => generateImage(qr, () => {
     console.log(`Ver QR http://localhost:3000/v1/ws/qr/${number}`)
 }))
 
-client.on('authenticated', () => {
+client.on('authenticated', async () => {
     console.log(`Logeado como ${number}`);
+    // await sendMessage(593978701575, 'Hola, soy Neil, Bot de Consulting App, estaré notificándote de cualquier evento de nuestra plataforma 🤖 🤖');
     fs.stat(routeQR, function (err, stats) {
         if (!err) {
         }
@@ -64,10 +68,10 @@ client.on('message', async (message) => {
 
 
 
-const sendMessage = (to, message) => {
+const sendMessage = async (to, message) => {
     const n = to + '@c.us';
     console.log(`Enviando mensaje a ${n}`);
-    client.sendMessage(n, message);
+    await client.sendMessage(n, message);
 }
 // '593963688259'
 

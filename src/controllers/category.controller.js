@@ -2,7 +2,7 @@ const httpStatus = require('http-status');
 const pick = require('../utils/pick');
 const ApiError = require('../utils/ApiError');
 const catchAsync = require('../utils/catchAsync');
-const { categoryService } = require('../services');
+const { categoryService, postService } = require('../services');
 
 const createCategory = catchAsync(async (req, res) => {
   console.log(req.file)
@@ -48,8 +48,16 @@ const updateCategory = catchAsync(async (req, res) => {
 });
 
 const deleteCategory = catchAsync(async (req, res) => {
-  await categoryService.deleteCategoryById(req.params.categoryId);
-  res.status(httpStatus.NO_CONTENT).send();
+  // await postService.deletePosts({ category: req.params.categoryId });
+  // const options = pick(req.query, ['sortBy', 'limit', 'page']);
+  const postsByCategory = await postService.queryPosts({ category: req.params.categoryId }, []);
+  console.log(postsByCategory);
+  if (postsByCategory.results.length > 0) {
+    throw new ApiError(httpStatus.BAD_REQUEST, 'Category has posts');
+  } else {
+    await categoryService.deleteCategoryById(req.params.categoryId);
+    res.status(httpStatus.NO_CONTENT).send();
+  }
 });
 
 module.exports = {

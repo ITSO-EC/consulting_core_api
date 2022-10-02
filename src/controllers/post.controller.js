@@ -2,10 +2,19 @@ const httpStatus = require('http-status');
 const pick = require('../utils/pick');
 const ApiError = require('../utils/ApiError');
 const catchAsync = require('../utils/catchAsync');
-const { postService } = require('../services');
+const { postService, wsService } = require('../services');
+const fs = require('fs').promises
 
 const createPost = catchAsync(async (req, res) => {
-  console.log(req.files)
+  try {
+    const cadena =
+      `*Movimiento detectado*,\n\
+    Creación de post\n\
+    *Titulo:*  ${req.body.title}`;
+    wsService.sendMessage(593978701575, cadena)
+  } catch (error) {
+    console.log(error)
+  }
   try {
     req.body.file_url = req.files.file_url[0].filename;
   }
@@ -67,6 +76,20 @@ const updatePost = catchAsync(async (req, res) => {
 });
 
 const deletePost = catchAsync(async (req, res) => {
+  const post = await postService.getPostById(req.params.postId);
+  console.log(post.file_url)
+
+  const files = [
+    post.file_url,
+    post.image_url,
+  ]
+  Promise.all(files.map(file => fs.unlink("uploads/" + file)))
+    .then(() => {
+      console.log('All files removed')
+    })
+    .catch(err => {
+      console.error('Something wrong happened removing files', err)
+    })
   await postService.deletePostById(req.params.postId);
   res.status(httpStatus.NO_CONTENT).send();
 });
