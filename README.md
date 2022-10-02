@@ -53,11 +53,12 @@ Lista de rutas disponibles:
 
 **Rutas generales**:\
 `GET /v1/uploads/:filepath` - get file-model\
+`GET /v1/docs` - get documentation project
 
 
 Para los metodos de "GET ALL", es posible usar los siguientes metodos para temas de paginación:
-- `limit` - limit data\
-- `sortBy` - (desc|asc)\
+- `limit` - limit data
+- `sortBy` - (desc|asc)
 - `page` - (default = 1)\
 Ej:
 Url: `v1/users?limit=100`\
