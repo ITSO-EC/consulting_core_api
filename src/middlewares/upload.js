@@ -1,8 +1,10 @@
 const multer = require('multer');
+const path = require('path');
 
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
-        cb(null, './uploads')
+        // cb(null, './uploads')
+        cb(null, path.join(__dirname, '../uploads/'));
     },
 
     filename: function (req, file, cb) {
@@ -11,6 +13,7 @@ const storage = multer.diskStorage({
 })
 const fileFilter = (req, file, cb) => {
     cb(null, true)
+    
     // if (file.mimetype === 'application/pdf' ||
     //     file.mimetype === 'application/pdf' ||
     //     file.mimetype === 'image/jpeg' ||
