@@ -10,17 +10,18 @@ const storage = multer.diskStorage({
     }
 })
 const fileFilter = (req, file, cb) => {
-    if (file.mimetype === 'application/pdf' ||
-        file.mimetype === 'application/pdf' ||
-        file.mimetype === 'image/jpeg' ||
-        file.mimetype === 'image/jpg' ||
-        file.mimetype === 'image/png'
-    ) {
-        cb(null, true)
-    } else {
-        cb(null, false)
-        // return cb(new Error('Invalid upload: fieldname should be test_doc and .csv format '));
-    }
+    cb(null, true)
+    // if (file.mimetype === 'application/pdf' ||
+    //     file.mimetype === 'application/pdf' ||
+    //     file.mimetype === 'image/jpeg' ||
+    //     file.mimetype === 'image/jpg' ||
+    //     file.mimetype === 'image/png'
+    // ) {
+    //     cb(null, true)
+    // } else {
+    //     cb(null, false)
+    //     // return cb(new Error('Invalid upload: fieldname should be test_doc and .csv format '));
+    // }
 }
 
 const upload = multer({

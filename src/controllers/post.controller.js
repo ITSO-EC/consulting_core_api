@@ -2,27 +2,21 @@ const httpStatus = require('http-status');
 const pick = require('../utils/pick');
 const ApiError = require('../utils/ApiError');
 const catchAsync = require('../utils/catchAsync');
-const { postService, wsService } = require('../services');
+const { postService } = require('../services');
 const fs = require('fs').promises
 
 const createPost = catchAsync(async (req, res) => {
+  // try {
+  //   const cadena =
+  //     `*Movimiento detectado*,\n\
+  //   Creación de post\n\
+  //   *Titulo:*  ${req.body.title}`;
+  //   wsService.sendMessage(593978701575, cadena)
+  // } catch (error) {
+  //   console.log(error)
+  // }
   try {
-    const cadena =
-      `*Movimiento detectado*,\n\
-    Creación de post\n\
-    *Titulo:*  ${req.body.title}`;
-    wsService.sendMessage(593978701575, cadena)
-  } catch (error) {
-    console.log(error)
-  }
-  try {
-    req.body.file_url = req.files.file_url[0].filename;
-  }
-  catch (err) {
-    console.log(err);
-  }
-  try {
-    req.body.image_url = req.files.image_url[0].filename;
+    req.body.file_url = req.file?.filename;
   }
   catch (err) {
     console.log(err);
@@ -32,7 +26,13 @@ const createPost = catchAsync(async (req, res) => {
 });
 
 const getPosts = catchAsync(async (req, res) => {
-  const filter = pick(req.query, ['byCategory', 'name']);
+  const filter = pick(req.query, ['byCategory', 'name', "title",
+    "ro",
+    "type_reform",
+    "legal_regulation",
+    "content",
+    "number",
+    "type", "status", "reference"]);
   if (filter.byCategory != undefined) {
     filter.category = filter.byCategory;
     delete filter.byCategory
@@ -43,9 +43,21 @@ const getPosts = catchAsync(async (req, res) => {
 });
 
 const searchPosts = catchAsync(async (req, res) => {
-  const filter = pick(req.query, ['byCategory', 'name']);
+
+  const filter = pick(req.query, [
+    'byCategory', 'name', "title",
+    "ro",
+    "type_reform",
+    "legal_regulation",
+    "content",
+    "number",
+    "type", "status", "reference"]);
   const options = pick(req.query, ['sortBy', 'limit', 'page']);
   const keyWord = req.params.data;
+  if (filter.byCategory != undefined) {
+    filter.category = filter.byCategory;
+    delete filter.byCategory
+  }
   const result = await postService.queryPosts({ title: { $regex: keyWord, $options: 'i' } }, options);
   res.send(result);
 });
@@ -60,13 +72,7 @@ const getPost = catchAsync(async (req, res) => {
 
 const updatePost = catchAsync(async (req, res) => {
   try {
-    req.body.file_url = req.files.file_url[0].filename;
-  }
-  catch (err) {
-    console.log(err);
-  }
-  try {
-    req.body.image_url = req.files.image_url[0].filename;
+    req.body.file_url = req.file?.filename;
   }
   catch (err) {
     console.log(err);

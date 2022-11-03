@@ -15,7 +15,7 @@ const client = new Client({
     },
 });
 
-client.initialize();
+// client.initialize();
 
 client.on('loading_screen', (percent, message) => {
     console.log('LOADING SCREEN', percent, message);

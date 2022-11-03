@@ -8,7 +8,9 @@ const createOrder = {
     description: Joi.string().required(),
     file_url: Joi.string(),
     type: Joi.string().required().valid('subscribed', 'refunded'),
+    status: Joi.string().required().valid('pending', 'resolved', 'canceled'),
     canceledAt: Joi.date(),
+    isVisible: Joi.boolean().required(),
     price: Joi.number().default(20),
     user: Joi.string().custom(objectId).required(),
   }),
@@ -16,8 +18,12 @@ const createOrder = {
 
 const getOrders = {
   query: Joi.object().keys({
+    isVisible: Joi.boolean(),
     name: Joi.string(),
     user: Joi.string(),
+    type: Joi.string(),
+    status: Joi.string(),
+    price: Joi.string(),
     sortBy: Joi.string(),
     limit: Joi.number().integer(),
     page: Joi.number().integer(),
@@ -39,10 +45,12 @@ const updateOrder = {
       title: Joi.string().required(),
       description: Joi.string().required(),
       file_url: Joi.string(),
-      price: Joi.number(),
       type: Joi.string().required().valid('subscribed', 'refunded'),
+      status: Joi.string().required().valid('pending', 'resolved', 'canceled'),
       canceledAt: Joi.date(),
-      user: Joi.string().custom(objectId),
+      isVisible: Joi.boolean().required(),
+      price: Joi.number().default(20),
+      user: Joi.string().custom(objectId).required(),
     })
     .min(1),
 };

@@ -17,7 +17,7 @@ const createOrder = catchAsync(async (req, res) => {
 });
 
 const getOrders = catchAsync(async (req, res) => {
-  const filter = pick(req.query, ['name', 'user']);
+  const filter = pick(req.query, ['name', 'user', 'type', 'status', 'price','isVisible']);
   const options = pick(req.query, ['sortBy', 'limit', 'page']);
   const result = await orderService.queryOrders(filter, options);
   res.send(result);

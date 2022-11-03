@@ -17,7 +17,7 @@ const createPost = {
     content: Joi.string().required(),
     number: Joi.string().required(),
     type: Joi.string().required().valid('pending', 'resolved', 'canceled'),
-    status: Joi.string().required(),
+    status: Joi.string().required().valid('pending', 'resolved', 'canceled'),
     reference: Joi.string().required(),
     category: Joi.string().custom(objectId),
   }),
@@ -26,6 +26,15 @@ const createPost = {
 const getPosts = {
   query: Joi.object().keys({
     name: Joi.string(),
+    reference: Joi.string(),
+    status: Joi.string(),
+    type: Joi.string(),
+    number: Joi.string(),
+    content: Joi.string(),
+    legal_regulation: Joi.string(),
+    type_reform: Joi.string(),
+    ro: Joi.string(),
+    title: Joi.string(),
     role: Joi.string(),
     sortBy: Joi.string(),
     limit: Joi.number().integer(),
@@ -54,7 +63,7 @@ const updatePost = {
       content: Joi.string().required(),
       number: Joi.string().required(),
       type: Joi.string().required().valid('pending', 'resolved', 'canceled'),
-      status: Joi.string().required(),
+      status: Joi.string().required().valid('pending', 'resolved', 'canceled'),
       reference: Joi.string().required(),
       category: Joi.string().custom(objectId),
     })

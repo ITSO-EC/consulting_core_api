@@ -10,9 +10,11 @@ const orderSchema = mongoose.Schema(
     description: { type: String, required: true, trim: true },
     file_url: { type: String, required: false, trim: true },
     type: { type: String, required: true, trim: true },
+    status: { type: String, required: false, trim: true },
     canceledAt: { type: Date, required: false, trim: true },
     price: { type: Number, default: 20, trim: true },
     user: { type: mongoose.Types.ObjectId, ref: "User", required: true },
+    isVisible: { type: Boolean, required: true, trim: true },
   },
   {
     timestamps: true,

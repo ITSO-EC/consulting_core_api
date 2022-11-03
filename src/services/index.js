@@ -5,5 +5,5 @@ module.exports.userService = require('./user.service');
 module.exports.postService = require('./post.service');
 module.exports.categoryService = require('./category.service');
 module.exports.pageService = require('./page.service');
-module.exports.wsService = require('./ws.service');
+// module.exports.wsService = require('./ws.service');
 module.exports.orderService = require('./order.service');
