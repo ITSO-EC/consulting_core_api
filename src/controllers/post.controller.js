@@ -16,11 +16,9 @@ const createPost = catchAsync(async (req, res) => {
   //   console.log(error)
   // }
   try {
-    console.log(req.body.file_url)
     req.body.file_url = req.file?.filename;
   }
   catch (err) {
-    console.log(err);
   }
   const post = await postService.createPost(req.body);
   res.status(httpStatus.CREATED).send(post);
